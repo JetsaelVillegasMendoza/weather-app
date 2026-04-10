@@ -1,33 +1,85 @@
+// Get elements from HTML
 const input = document.getElementById('cityInput');
 const button = document.getElementById('searchBtn');
 const result = document.getElementById('result');
 
-// Step 1: Get coordinates from city name
-async function getCoordinates(city) {
-  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`;
+// Main function: get weather by city
+async function getWeatherByCity(city) {
+  try {
+    // Validate input
+    if (!city || city.trim() === "") {
+      throw new Error("City name is required");
+    }
 
-  const response = await fetch(url);
-  const data = await response.json();
+    // 1. Get coordinates
+    const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`;
+    const geoResponse = await fetch(geoUrl);
 
-  if (!data.results || data.results.length === 0) {
-    throw new Error('City not found');
+    if (!geoResponse.ok) {
+      throw new Error("Failed to fetch location data");
+    }
+
+    const geoData = await geoResponse.json();
+
+    if (!geoData.results || geoData.results.length === 0) {
+      throw new Error("City not found");
+    }
+
+    const { latitude, longitude, name, country } = geoData.results[0];
+
+    // 2. Get weather
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
+    const weatherResponse = await fetch(weatherUrl);
+
+    if (!weatherResponse.ok) {
+      throw new Error("Failed to fetch weather data");
+    }
+
+    const weatherData = await weatherResponse.json();
+
+    const { temperature, weathercode } = weatherData.current_weather;
+
+    // 3. Weather code → description
+    function getWeatherDescription(code) {
+      const weatherCodes = {
+        0: "Clear sky",
+        1: "Mainly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Rime fog",
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+        61: "Light rain",
+        63: "Moderate rain",
+        65: "Heavy rain",
+        71: "Light snow",
+        73: "Moderate snow",
+        75: "Heavy snow",
+        80: "Rain showers",
+        95: "Thunderstorm"
+      };
+
+      return weatherCodes[code] || "Unknown weather";
+    }
+
+    // 4. Return JSON
+    return {
+      city: `${name}, ${country}`,
+      temperature: temperature,
+      description: getWeatherDescription(weathercode)
+    };
+
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message || "Something went wrong"
+    };
   }
-
-  const { latitude, longitude, name, country } = data.results[0];
-  return { latitude, longitude, name, country };
 }
 
-// Step 2: Get weather data
-async function getWeather(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
-
-  const response = await fetch(url);
-  const data = await response.json();
-
-  return data.current_weather.temperature;
-}
-
-// Step 3: Handle user action
+// Handle button click
 button.addEventListener('click', async () => {
   const city = input.value.trim();
 
@@ -38,12 +90,11 @@ button.addEventListener('click', async () => {
 
   result.textContent = 'Loading...';
 
-  try {
-    const { latitude, longitude, name, country } = await getCoordinates(city);
-    const temperature = await getWeather(latitude, longitude);
+  const data = await getWeatherByCity(city);
 
-    result.textContent = `Temperature in ${name}, ${country}: ${temperature}°C`;
-  } catch (error) {
-    result.textContent = error.message;
+  if (data.error) {
+    result.textContent = data.message;
+  } else {
+    result.textContent = `Temperature in ${data.city}: ${data.temperature}°C - ${data.description}`;
   }
 });
