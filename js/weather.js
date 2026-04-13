@@ -30,6 +30,8 @@ const WEATHER_CODES = {
  *
  * @example
  * formatCityName('Berlin', 'Germany'); // 'Berlin, Germany'
+ * @example
+ * formatCityName('Tokyo'); // 'Tokyo'
  */
 function formatCityName(name, country) {
   return country ? `${name}, ${country}` : name;
@@ -40,7 +42,7 @@ function formatCityName(name, country) {
  *
  * @param {string} city - The city name to search for.
  * @returns {Promise<{latitude:number,longitude:number,name:string,country?:string}>} The location data.
- * @throws {Error} When the city cannot be found or coordinates are unavailable.
+ * @throws {Error} When the city cannot be found, coordinates are unavailable, or the request fails.
  *
  * @example
  * const location = await fetchLocation('Madrid');
@@ -68,7 +70,7 @@ async function fetchLocation(city) {
  * @param {number} latitude - The latitude coordinate.
  * @param {number} longitude - The longitude coordinate.
  * @returns {Promise<{temperature:number,weathercode:number}>} The current weather values.
- * @throws {Error} When weather data is missing or incomplete.
+ * @throws {Error} When weather data is missing, incomplete, or the request fails.
  *
  * @example
  * const weather = await fetchCurrentWeather(52.52, 13.41);
@@ -93,6 +95,9 @@ async function fetchCurrentWeather(latitude, longitude) {
 /**
  * Get weather details from an entered city name.
  *
+ * Validates the city input, performs location lookup, fetches current weather,
+ * and returns either a success result or an error object.
+ *
  * @param {string} city - The name of the city to query.
  * @returns {Promise<{city:string,temperature:number,description:string}|{error:boolean,message:string}>} The weather result object or an error object.
  *
@@ -100,7 +105,13 @@ async function fetchCurrentWeather(latitude, longitude) {
  * const result = await getWeatherByCity('Tokyo');
  * if (!result.error) {
  *   console.log(result.city, result.temperature, result.description);
+ * } else {
+ *   console.error(result.message);
  * }
+ *
+ * @example
+ * const invalid = await getWeatherByCity('   ');
+ * console.log(invalid.error, invalid.message); // true, 'City name is required'
  */
 export async function getWeatherByCity(city) {
   try {
@@ -132,6 +143,8 @@ export async function getWeatherByCity(city) {
  *
  * @example
  * getWeatherDescription(0); // 'Clear sky'
+ * @example
+ * getWeatherDescription(999); // 'Unknown weather'
  */
 export function getWeatherDescription(code) {
   return WEATHER_CODES[code] || 'Unknown weather';

@@ -4,7 +4,7 @@
  * @param {string} url - The endpoint to fetch.
  * @param {string} [errorMessage='Failed to fetch data'] - Custom error message used when the request fails.
  * @returns {Promise<any>} The parsed JSON response from the endpoint.
- * @throws {Error} When the network request fails or the response is not OK.
+ * @throws {Error} When the network request fails, the response is not OK, or the response body cannot be parsed as JSON.
  *
  * @example
  * const data = await fetchJson('https://api.example.com/data');

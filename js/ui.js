@@ -1,6 +1,9 @@
 /**
  * Display a loading state inside the provided container.
  *
+ * This clears previous content, removes any error styling, and sets
+ * an accessible busy state while the app waits for the API response.
+ *
  * @param {HTMLElement} container - The DOM element where the loading state is shown.
  * @returns {void}
  *
@@ -15,6 +18,8 @@ export function showLoading(container) {
 
 /**
  * Display a feedback message in the provided container.
+ *
+ * The message is styled as an error or success and the busy state is removed.
  *
  * @param {HTMLElement} container - The DOM element where the message appears.
  * @param {string} message - The text to display.
@@ -33,6 +38,8 @@ export function showMessage(container, message, isError = false) {
 
 /**
  * Render weather data into the provided container.
+ *
+ * This clears any previous results and applies success styling.
  *
  * @param {HTMLElement} container - The element that will display the weather result.
  * @param {{city:string,temperature:number,description:string}} data - The weather data to render.

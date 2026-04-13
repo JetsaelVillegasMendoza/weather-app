@@ -20,6 +20,9 @@ function setControlsEnabled(enabled, controls) {
 /**
  * Attach DOM event listeners once the page has loaded.
  *
+ * Binds the search button and Enter key to the weather lookup flow,
+ * and logs an error if the required DOM elements are not available.
+ *
  * @returns {void}
  *
  * @example
@@ -39,6 +42,9 @@ function bindEvents() {
 
   /**
    * Handle search requests from the user and update the UI with weather results.
+   *
+   * Validates the input city name, shows a loading state, and renders either
+   * weather information or an error message.
    *
    * @returns {Promise<void>} Resolves after rendering weather or showing an error.
    *

@@ -7,6 +7,7 @@
  * @example
  * isNonEmptyString('Berlin'); // true
  * isNonEmptyString('   '); // false
+ * isNonEmptyString(null); // false
  */
 export function isNonEmptyString(value) {
   return typeof value === 'string' && value.trim().length > 0;
