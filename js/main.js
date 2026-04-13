@@ -1,24 +1,29 @@
-const input = typeof document !== 'undefined' ? document.getElementById('cityInput') : null;
-const button = typeof document !== 'undefined' ? document.getElementById('searchBtn') : null;
-const result = typeof document !== 'undefined' ? document.getElementById('result') : null;
+window.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('cityInput');
+  const button = document.getElementById('searchBtn');
+  const result = document.getElementById('result');
 
-if (button && result && typeof window !== 'undefined' && typeof window.getWeatherByCity === 'function') {
+  if (!input || !button || !result) {
+    return;
+  }
+
   button.addEventListener('click', async () => {
     const city = input.value.trim();
 
-    if (!city) {
-      result.textContent = 'Please enter a city name.';
+    if (!window.appUtils.isNonEmptyString(city)) {
+      window.ui.showMessage(result, 'Please enter a city name.', true);
       return;
     }
 
-    result.textContent = 'Loading...';
+    window.ui.showLoading(result);
 
-    const data = await window.getWeatherByCity(city);
+    const data = await window.weather.getWeatherByCity(city);
 
     if (data.error) {
-      result.textContent = data.message;
-    } else {
-      result.textContent = `Temperature in ${data.city}: ${data.temperature}°C - ${data.description}`;
+      window.ui.showMessage(result, data.message, true);
+      return;
     }
+
+    window.ui.renderWeather(result, data);
   });
-}
+});
