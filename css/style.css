@@ -8,6 +8,7 @@
   --primary-strong: #111111;
   --focus: rgba(255, 255, 255, 0.12);
   --error: #d92d20;
+  --success: #4ade80;
 }
 
 * {
@@ -100,10 +101,48 @@ h1 {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
+#result.error {
+  color: var(--error);
+  border-color: rgba(217, 45, 32, 0.16);
+  background: rgba(255, 225, 225, 0.8);
+}
+
+#result.success {
+  color: #000000;
+  border-color: rgba(56, 153, 85, 0.16);
+  background: #b7e4b5;
+}
+
+.weather-title {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.weather-temperature,
+.weather-description {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
 .error {
   color: var(--error);
   border-color: rgba(217, 45, 32, 0.16);
-  background: rgba(217, 45, 32, 0.05);
+  background: rgba(255, 225, 225, 0.8);
+}
+
+.success {
+  color: #000000;
+  border-color: rgba(56, 153, 85, 0.16);
+  background: #b7e4b5;
+}
+
+.success .weather-title,
+.success .weather-temperature,
+.success .weather-description {
+  color: #000000;
 }
 
 @media (max-width: 640px) {

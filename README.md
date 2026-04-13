@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-Weather App is a lightweight client-side web application that shows the current weather for a city entered by the user. It uses Open-Meteo's geocoding and weather forecast APIs to fetch location coordinates and current weather data without requiring an API key.
+Weather App is a lightweight client-side web application that displays current weather data for a city entered by the user. It uses Open-Meteo's geocoding and forecast APIs to resolve city coordinates and fetch current weather conditions without requiring an API key.
 
 ## Installation Instructions
 
@@ -16,13 +16,13 @@ Weather App is a lightweight client-side web application that shows the current 
 
 4. Open `index.html` in your browser, or serve the folder with a local static server if preferred.
 
-> Note: The application is built with plain HTML, CSS, and JavaScript, so `npm install` is only required to run the test suite.
+> Note: The app uses ES modules (`type: module` in `package.json`), so the browser must support module scripts when opening `index.html`.
 
 ## User Guide
 
 1. Open `index.html` in a browser.
 2. Enter a city name in the input field.
-3. Click the **Get Weather** button.
+3. Click the **Get Weather** button or press **Enter**.
 4. The weather result appears below the input.
 
 > Example: enter `Paris`, then click **Get Weather**.
@@ -32,7 +32,9 @@ Weather App is a lightweight client-side web application that shows the current 
 Successful result example:
 
 ```text
-Temperature in Paris, France: 18°C - Clear sky
+Paris, France
+Temperature: 18°C
+Conditions: Clear sky
 ```
 
 Error examples:
@@ -48,13 +50,13 @@ City not found
 ## Features
 
 - Search weather by city name
+- Supports Enter key submission and button click
 - Uses Open-Meteo geocoding API to resolve city coordinates
 - Uses Open-Meteo forecast API to get current weather
-- Displays temperature and weather description
-- Shows a loading message while fetching data
-- Supports accented and multi-word city names
-- Validates user input before calling the API
-- Shows friendly error messages for failures
+- Displays city label, temperature, and weather conditions
+- Shows a loading state while fetching data
+- Applies success and error styling for feedback
+- Uses ES module imports across JavaScript files
 - Includes Jest unit tests for weather fetching and error handling
 
 ## Error Handling
@@ -84,7 +86,7 @@ Run the unit tests with:
 npm test
 ```
 
-The suite uses Jest and verifies successful fetches, invalid input handling, API failures, and weather code mapping.
+The suite uses Jest and runs with node experimental VM modules to support ES module imports.
 
 ## Future Improvements
 

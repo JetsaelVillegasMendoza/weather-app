@@ -1,18 +1,15 @@
 /** @jest-environment jsdom */
 
-let getWeatherByCity;
+import { jest } from '@jest/globals';
+import { getWeatherByCity } from './weather.js';
 
 global.fetch = jest.fn();
 
-beforeAll(() => {
-  document.body.innerHTML = `
-    <input id="cityInput" />
-    <button id="searchBtn"></button>
-    <p id="result"></p>
-  `;
-  jest.resetModules();
-  ({ getWeatherByCity } = require('./weather'));
-});
+document.body.innerHTML = `
+  <input id="cityInput" />
+  <button id="searchBtn"></button>
+  <p id="result"></p>
+`;
 
 beforeEach(() => {
   fetch.mockClear();
