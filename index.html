@@ -8,14 +8,40 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="app-shell">
-    <h1>Weather App</h1>
+  <main class="app-shell">
+    <section class="app-card">
+      <header class="app-header">
+        <p class="eyebrow">Live weather</p>
+        <h1>Weather App</h1>
+        <p class="app-subtitle">
+          Search for any city and get the current weather in a cleaner, easier-to-read layout.
+        </p>
+      </header>
 
-    <input type="text" id="cityInput" placeholder="Enter city name" />
-    <button id="searchBtn">Get Weather</button>
+      <section class="search-panel">
+        <label for="cityInput" class="input-label">City</label>
 
-    <p id="result"></p>
-  </div>
+        <div class="search-row">
+          <div class="input-wrap">
+            <span class="input-icon" aria-hidden="true">📍</span>
+            <input
+              type="text"
+              id="cityInput"
+              placeholder="Enter city name"
+              autocomplete="off"
+            />
+          </div>
+
+          <button id="searchBtn" type="button">
+            <span aria-hidden="true">🔎</span>
+            <span>Get Weather</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="result" aria-live="polite"></section>
+    </section>
+  </main>
 
   <script type="module" src="js/main.js"></script>
 </body>

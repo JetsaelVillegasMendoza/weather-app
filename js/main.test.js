@@ -13,6 +13,7 @@ document.body.innerHTML = `
 
 beforeEach(() => {
   fetch.mockClear();
+  localStorage.clear();
 });
 
 test('returns weather data for a valid city', async () => {

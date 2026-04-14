@@ -1,8 +1,78 @@
 # Weather App
 
+![Weather App Screenshot](./assets/img/preview.png)
+![Status](https://img.shields.io/badge/status-completed-green)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+![Tests](https://img.shields.io/badge/Tested_with-Jest-blue)
+![API](https://img.shields.io/badge/API-Open--Meteo-green)
+
+## 📑 Table of Contents
+
+- [Project Summary](#project-summary)
+- [Development Context](#development-context)
+- [Features](#features)
+- [UI / UX Improvements](#ui--ux-improvements)
+- [Architecture](#architecture)
+- [Installation Instructions](#installation-instructions)
+- [User Guide](#user-guide)
+- [Sample Results](#sample-results)
+- [Error Handling](#error-handling)
+- [API Information](#api-information)
+- [Testing](#testing)
+- [Future Improvements](#future-improvements)
+
 ## Project Summary
 
-Weather App is a lightweight client-side web application that displays current weather data for a city entered by the user. It uses Open-Meteo's geocoding and forecast APIs to resolve city coordinates and fetch current weather conditions without requiring an API key.
+Weather App is a modern, lightweight client-side web application that displays current weather data for any city entered by the user.
+
+It features a clean, responsive UI with improved readability, loading states, and visual feedback, while using Open-Meteo APIs without requiring an API key.
+
+## Development Context
+
+This project was developed as part of the **"AI Training for Software Developer"** course.
+
+The main objective of the course was to learn how to build web applications using AI as a development tool, integrating it into tasks such as:
+
+- Code generation and refactoring
+- Debugging and error handling
+- UI/UX improvements
+- Documentation and testing
+
+This project reflects an AI-assisted development workflow, combining human decision-making with AI-generated suggestions to improve productivity and code quality.
+
+## Features
+
+- Search weather by city name
+- Clean and responsive UI (mobile-first design)
+- Visual weather display with icons and structured layout
+- Loading state with spinner feedback
+- Error and success states with clear styling
+- Keyboard support (Enter key submission)
+- Weather description mapping from weather codes
+- In-memory and localStorage caching for performance
+- Modular JavaScript architecture (ES modules)
+- Includes Jest unit tests for weather fetching and error handling
+
+## UI / UX Improvements
+
+- Redesigned layout using a card-based interface
+- Improved typography, spacing, and color contrast
+- Responsive layout for mobile and desktop
+- Integrated weather icons for better visual feedback
+- Accessible states using aria attributes (aria-live, aria-busy)
+- Smooth loading and interaction feedback
+
+## Architecture
+
+The application is organized into modular components:
+
+- `main.js`: Handles user interaction and app flow
+- `ui.js`: Responsible for rendering UI states and results
+- `weather.js`: Handles business logic, API integration, and caching
+- `api.js`: Fetch abstraction layer
+- `utils.js`: Input validation utilities
+
+This separation ensures maintainability and scalability.
 
 ## Installation Instructions
 
@@ -47,18 +117,6 @@ Please enter a city name.
 City not found
 ```
 
-## Features
-
-- Search weather by city name
-- Supports Enter key submission and button click
-- Uses Open-Meteo geocoding API to resolve city coordinates
-- Uses Open-Meteo forecast API to get current weather
-- Displays city label, temperature, and weather conditions
-- Shows a loading state while fetching data
-- Applies success and error styling for feedback
-- Uses ES module imports across JavaScript files
-- Includes Jest unit tests for weather fetching and error handling
-
 ## Error Handling
 
 The application handles errors at several stages:
@@ -78,9 +136,9 @@ The app uses the following Open-Meteo APIs:
 
 No API key is required for these endpoints.
 
-## Running Tests
+## Testing
 
-Run the unit tests with:
+Run unit tests with:
 
 ```bash
 npm test
@@ -90,9 +148,9 @@ The suite uses Jest and runs with node experimental VM modules to support ES mod
 
 ## Future Improvements
 
-- Add hourly and daily forecast display
-- Improve UI design with weather icons and responsive layout
-- Add search suggestions/autocomplete for city names
-- Support browser geolocation and saved favorites
-- Add better loading animations and retry support
-- Expand test coverage with integration or end-to-end tests
+- Add hourly and 7-day forecast
+- Dynamic background based on weather conditions
+- Geolocation support (detect user's current location)
+- Favorite cities and persistent search history
+- Dark/light theme toggle
+- API request retry and offline handling
