@@ -17,6 +17,10 @@ export function showLoading(container) {
 }
 
 /**
+ * @typedef {import('./weather.js').WeatherResult} WeatherResult
+ */
+
+/**
  * Display a feedback message in the provided container.
  *
  * The message is styled as an error or success and the busy state is removed.
@@ -42,7 +46,7 @@ export function showMessage(container, message, isError = false) {
  * This clears any previous results and applies success styling.
  *
  * @param {HTMLElement} container - The element that will display the weather result.
- * @param {{city:string,temperature:number,description:string}} data - The weather data to render.
+ * @param {WeatherResult} data - The weather data to render.
  * @returns {void}
  *
  * @example

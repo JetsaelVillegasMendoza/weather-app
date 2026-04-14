@@ -1,7 +1,7 @@
 /**
  * Determine whether a value is a non-empty string.
  *
- * @param {any} value - The input to validate.
+ * @param {unknown} value - The input to validate.
  * @returns {boolean} True when the value is a string with at least one non-whitespace character.
  *
  * @example

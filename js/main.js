@@ -3,10 +3,16 @@ import { isNonEmptyString } from './utils.js';
 import { renderWeather, showLoading, showMessage } from './ui.js';
 
 /**
+ * @typedef {import('./weather.js').WeatherResult} WeatherResult
+ * @typedef {import('./weather.js').WeatherError} WeatherError
+ * @typedef {{input: HTMLInputElement, button: HTMLButtonElement}} SearchControls
+ */
+
+/**
  * Enable or disable the main search controls while an API request is in progress.
  *
  * @param {boolean} enabled - Whether the controls should be enabled.
- * @param {{input: HTMLInputElement, button: HTMLButtonElement}} controls - The input and button controls.
+ * @param {SearchControls} controls - The input and button controls.
  * @returns {void}
  *
  * @example
