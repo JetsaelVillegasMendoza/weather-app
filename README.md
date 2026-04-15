@@ -68,6 +68,7 @@ This project reflects an AI-assisted development workflow, combining human decis
 ## Architecture
 
 - `js/main.js`: Handles user interaction and app flow
+- `main.test.js`: contains Jest unit tests that validate the weather app behavior
 - `js/ui.js`: Responsible for rendering UI states and results
 - `js/weather.js`: Handles business logic, API integration, and caching
 - `js/api.js`: Fetch abstraction layer
@@ -87,6 +88,7 @@ weather-app/
 │   └── style.css
 ├── js/
 │   ├── main.js
+│   ├── main.test.js
 │   ├── ui.js
 │   ├── weather.js
 │   ├── api.js
@@ -94,7 +96,7 @@ weather-app/
 ├── assets/
 │   ├── img/
 │   └── icons/
-├── main.test.js
+├── package-lock.json
 ├── package.json
 └── README.md
 ```
