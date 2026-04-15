@@ -84,8 +84,12 @@ const inMemoryCache = {};
 /**
  * Create a storage adapter for weather cache.
  *
- * Uses browser localStorage when available and writable, otherwise falls
- * back to an in-memory cache for environments without persistent storage.
+ * Uses browser localStorage when available and writable to cache recent
+ * weather responses on the client side. Cached entries are keyed by the
+ * searched city's coordinates and expire after one hour.
+ *
+ * If persistent storage is unavailable, the app falls back to an in-memory
+ * cache for the current session only.
  *
  * @returns {CacheStorage} A storage adapter for caching weather JSON.
  */
@@ -163,6 +167,9 @@ function readCachedWeather(key) {
 
 /**
  * Persist weather data in cache storage with a timestamp.
+ *
+ * Data is stored only in the user's browser and is used to reduce repeated
+ * API requests for the same searched location during the cache window.
  *
  * @param {string} key - The cache key.
  * @param {WeatherData} data - The weather data to cache.

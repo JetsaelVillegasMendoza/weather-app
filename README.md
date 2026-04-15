@@ -13,12 +13,15 @@
 - [Features](#features)
 - [UI / UX Improvements](#ui--ux-improvements)
 - [Architecture](#architecture)
+- [Project Structure](#project-structure)
 - [Installation Instructions](#installation-instructions)
 - [User Guide](#user-guide)
 - [Sample Results](#sample-results)
 - [Error Handling](#error-handling)
 - [API Information](#api-information)
 - [Testing](#testing)
+- [Privacy and Data Handling](#privacy-and-data-handling)
+- [Licensing and Third-Party Tools](#licensing-and-third-party-tools)
 - [Future Improvements](#future-improvements)
 
 ## Project Summary
@@ -64,15 +67,35 @@ This project reflects an AI-assisted development workflow, combining human decis
 
 ## Architecture
 
-The application is organized into modular components:
-
-- `main.js`: Handles user interaction and app flow
-- `ui.js`: Responsible for rendering UI states and results
-- `weather.js`: Handles business logic, API integration, and caching
-- `api.js`: Fetch abstraction layer
-- `utils.js`: Input validation utilities
+- `js/main.js`: Handles user interaction and app flow
+- `js/ui.js`: Responsible for rendering UI states and results
+- `js/weather.js`: Handles business logic, API integration, and caching
+- `js/api.js`: Fetch abstraction layer
+- `js/utils.js`: Input validation utilities
+- `css/style.css`: Styling and responsive design
+- `index.html`: Main HTML structure
 
 This separation ensures maintainability and scalability.
+
+## Project Structure
+
+weather-app/
+│
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── main.js
+│   ├── ui.js
+│   ├── weather.js
+│   ├── api.js
+│   └── utils.js
+├── assets/
+│   ├── img/
+│   └── icons/
+├── main.test.js
+├── package.json
+└── README.md
 
 ## Installation Instructions
 
@@ -84,7 +107,7 @@ This separation ensures maintainability and scalability.
    npm install
    ```
 
-4. Open `index.html` in your browser, or serve the folder with a local static server if preferred.
+4. Open `index.html` in your browser (recommended with Live Server).
 
 > Note: The app uses ES modules (`type: module` in `package.json`), so the browser must support module scripts when opening `index.html`.
 
@@ -145,6 +168,28 @@ npm test
 ```
 
 The suite uses Jest and runs with node experimental VM modules to support ES module imports.
+
+## Privacy and Data Handling
+
+This application does not require user accounts, passwords, or API keys.
+
+It does not use browser geolocation in its current version. Weather searches are based only on the city name entered manually by the user.
+
+To improve performance, the app stores recent weather responses in localStorage for up to one hour using geographic coordinates associated with the searched city. This cache is used only on the client side and is not sent to any custom backend server.
+
+If stronger privacy is required, the caching strategy can be changed to in-memory storage only, avoiding persistence between sessions.
+
+## Licensing and Third-Party Tools
+
+This project is released under the MIT License.
+
+Third-party tools and services used in this project include:
+
+- **Open-Meteo API** for geocoding and weather data
+- **Jest** for unit testing
+- **jsdom** through `jest-environment-jsdom` for DOM-related test execution
+
+Each dependency keeps its own respective license. See `package.json`, `package-lock.json`, and the `LICENSE` file for project and dependency details.
 
 ## Future Improvements
 
