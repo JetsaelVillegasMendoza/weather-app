@@ -79,6 +79,7 @@ This separation ensures maintainability and scalability.
 
 ## Project Structure
 
+```bash
 weather-app/
 │
 ├── index.html
@@ -96,6 +97,7 @@ weather-app/
 ├── main.test.js
 ├── package.json
 └── README.md
+```
 
 ## Installation Instructions
 
