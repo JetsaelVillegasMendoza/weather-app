@@ -68,7 +68,7 @@ This project reflects an AI-assisted development workflow, combining human decis
 ## Architecture
 
 - `js/main.js`: Handles user interaction and app flow
-- `js/main.test.js`: contains Jest unit tests that validate the weather app behavior
+- `js/main.test.js`: Contains Jest unit tests that validate the weather app behavior
 - `js/ui.js`: Responsible for rendering UI states and results
 - `js/weather.js`: Handles business logic, API integration, and caching
 - `js/api.js`: Fetch abstraction layer
@@ -105,7 +105,13 @@ weather-app/
 ## Installation Instructions
 
 1. Clone or download the repository.
-2. Open a terminal in the project folder.
+   ```bash
+      git clone https://github.com/JetsaelVillegasMendoza/weather-app.git
+   ```
+2. Navigate the project folder.
+   ```bash
+      cd weather-app
+   ```
 3. Install dependencies for tests:
 
    ```bash
