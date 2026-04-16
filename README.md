@@ -104,11 +104,11 @@ weather-app/
 
 ## Installation Instructions
 
-1. Clone or download the repository.
+1. Clone or download the repository:
    ```bash
    git clone https://github.com/JetsaelVillegasMendoza/weather-app.git
    ```
-2. Navigate the project folder.
+2. Navigate the project folder:
    ```bash
    cd weather-app
    ```
