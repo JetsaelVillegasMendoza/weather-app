@@ -1,4 +1,4 @@
-# Weather App
+# 🌦️ Weather App
 
 ![Weather App Screenshot](./assets/img/preview.png)
 ![Status](https://img.shields.io/badge/status-completed-green)
@@ -6,7 +6,7 @@
 ![Tests](https://img.shields.io/badge/Tested_with-Jest-blue)
 ![API](https://img.shields.io/badge/API-Open--Meteo-green)
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Project Summary](#project-summary)
 - [Development Context](#development-context)
@@ -106,11 +106,11 @@ weather-app/
 
 1. Clone or download the repository.
    ```bash
-      git clone https://github.com/JetsaelVillegasMendoza/weather-app.git
+   git clone https://github.com/JetsaelVillegasMendoza/weather-app.git
    ```
 2. Navigate the project folder.
    ```bash
-      cd weather-app
+   cd weather-app
    ```
 3. Install dependencies for tests:
 
